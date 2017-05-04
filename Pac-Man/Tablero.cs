@@ -62,33 +62,34 @@ namespace Pac_Man
                 } while (level.ReadLine() !="" && level.ReadLine().Length == COLS);
             }
         }
-        public void Dibuja()
+        public void Dibuja()    //ya que somos en parte de bellas artes vamos a pintar un poquito
         {
-            for (int i = 0; i < FILS; i++)
+            for (int i = 0; i < FILS; i++)      //recorremos todo el tablero
             {
                 for(int j = 0; j < COLS; j++)
                 {
-                    switch (cas[i, j])
+                    switch (cas[i, j])      //pintaremos segun el estado de la casilla
                     {
                         case Casilla.Blanco:
-                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.BackgroundColor = ConsoleColor.Black;       //blanco para muros, negro para pasillos
                             Console.Write(" ");
                             break;
                         case Casilla.Comida:
-                            Console.BackgroundColor = ConsoleColor.White;
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.BackgroundColor = ConsoleColor.Black;   
+                            Console.ForegroundColor = ConsoleColor.Green;   //verde puntos
                             Console.Write("·");
                             break;
                         case Casilla.Muro:
-                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.BackgroundColor = ConsoleColor.White;
                             Console.Write(" ");
                             break;
                         case Casilla.MuroCelda:
-                            Console.BackgroundColor = ConsoleColor.DarkBlue;
+                            Console.BackgroundColor = ConsoleColor.DarkBlue;    //muros que retienen fantasmas al principio
                             Console.Write(" ");
                             break;
                         case Casilla.Vitamina:
-                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.ForegroundColor = ConsoleColor.Red;     //vitamina OP
                             Console.Write("*");
                             break;
                         default:break;
@@ -96,23 +97,24 @@ namespace Pac_Man
                     Console.BackgroundColor = ConsoleColor.Black;       //devolvemos los colores originales por si acaso
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                Console.WriteLine();
+                Console.WriteLine();    //un espacio de margen
             }
             Console.WriteLine();
             if (Debug)
             {
-                for (int a = 0; a < pers.Length; a++)
+                for (int a = 0; a < pers.Length; a++)   //vamos a poner la info de los pjs si se esta en modo debug
                 {
-                    if (a == 0)
+                    if (a == 0) //pers[0] = pacman
                     {
-                        Console.Write("Posicion de Pacman: {0}(X), {1}(Y) ", pers[a].posX, pers[a].posY);
+                        Console.Write("Posicion de Pacman: {0}(X), {1}(Y) ", pers[a].posX, pers[a].posY);   
                         Console.WriteLine("Direccion de Pacman: ({0},{1}).", pers[a].dirX, pers[a].dirY);
+                        Console.WriteLine();    //margen entre infos
                     }
-                    else
+                    else //si no es =0, son fantasmas
                     {
                         Console.Write("Posicion del fantasma{2}: {0}(X), {1}(Y) ", pers[a].posX, pers[a].posY, a);
                         Console.WriteLine("Direccion del fantasma{2}: ({0},{1}).", pers[a].dirX, pers[a].dirY, a);
-                        Console.WriteLine();
+                        Console.WriteLine();    //same
                     }
                 }
             }
